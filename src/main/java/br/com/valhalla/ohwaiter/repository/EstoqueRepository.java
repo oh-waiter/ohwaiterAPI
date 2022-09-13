@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import br.com.valhalla.ohwaiter.model.Estoque;
 
 @Repository
-public interface EstoqueRepository extends JpaRepository<Estoque, Integer>{
+public interface EstoqueRepository extends JpaRepository<Estoque, Long>{
     
 }

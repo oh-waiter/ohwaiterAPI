@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import br.com.valhalla.ohwaiter.model.Funcionario;
 
 @Repository
-public interface FuncionarioRepository extends JpaRepository<Funcionario, Integer>{
+public interface FuncionarioRepository extends JpaRepository<Funcionario, Long>{
     
 }
