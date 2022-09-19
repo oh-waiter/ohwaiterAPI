@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 
 import br.com.valhalla.ohwaiter.model.Pagamento;
 @Repository
-public interface CartaoRepository extends JpaRepository<Pagamento, Integer> {
+public interface CartaoRepository extends JpaRepository<Pagamento, Long> {
 }
