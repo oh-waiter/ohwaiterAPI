@@ -1,5 +1,6 @@
 package br.com.valhalla.ohwaiter;
 
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
