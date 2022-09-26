@@ -29,9 +29,8 @@ public class EstoqueService {
         return estoqueRepository.findAll();
     }
 
-    public Estoque alterarProdutoPorId(Long id){
-        Estoque produto = estoqueRepository.findById(id).orElse(null);
-        return estoqueRepository.save(produto);
+    public Estoque alterarProduto(Estoque estoque){
+        return estoqueRepository.save(estoque);
     }
 
     public void deletarProdutoPorId(Long id){
