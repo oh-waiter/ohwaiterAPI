@@ -1,8 +1,4 @@
 package br.com.valhalla.ohwaiter.model;
-
-import java.math.BigDecimal;
-import java.text.DateFormat;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
