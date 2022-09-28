@@ -28,9 +28,8 @@ public class PagamentoService {
         return cartaoRepository.findAll();
     }
 
-    public Pagamento alterarCartaoPorId(Long id){
-        Pagamento cartao = cartaoRepository.findById(id).orElse(null);
-        return cartaoRepository.save(cartao);
+    public Pagamento alterarCartaoPorId(Pagamento pagamento){
+        return cartaoRepository.save(pagamento);
     }
 
     public void deletarCartaoPorId(Long id){
