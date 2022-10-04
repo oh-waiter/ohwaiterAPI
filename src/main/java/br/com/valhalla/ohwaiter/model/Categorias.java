@@ -10,24 +10,24 @@ public class Categorias {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int codCategoria;
+	private Long ID;
 	
 	private String nomeCategoria;
 	
 	
 
-	public Categorias(int codCategoria, String nomeCategoria) {
+	public Categorias(Long codCategoria, String nomeCategoria) {
 		super();
-		this.codCategoria = codCategoria;
+		this.ID = codCategoria;
 		this.nomeCategoria = nomeCategoria;
 	}
 
-	public int getCodCategoria() {
-		return codCategoria;
+	public Long getID() {
+		return ID;
 	}
 
-	public void setCodCategoria(int codCategoria) {
-		this.codCategoria = codCategoria;
+	public void setCodCategoria(Long codCategoria) {
+		this.ID = codCategoria;
 	}
 
 	public String getNomeCategoria() {

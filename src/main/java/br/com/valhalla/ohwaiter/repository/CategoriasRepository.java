@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import br.com.valhalla.ohwaiter.model.Categorias;
 
 @Repository
-public interface CategoriasRepository extends JpaRepository<Categorias, Integer> {
+public interface CategoriasRepository extends JpaRepository<Categorias, Long> {
 
 }
