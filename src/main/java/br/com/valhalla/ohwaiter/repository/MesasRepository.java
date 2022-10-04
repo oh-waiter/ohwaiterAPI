@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import br.com.valhalla.ohwaiter.model.Mesas;
 
 @Repository
-public interface MesasRepository extends JpaRepository<Mesas, Integer>{
+public interface MesasRepository extends JpaRepository<Mesas, Long>{
 
 }

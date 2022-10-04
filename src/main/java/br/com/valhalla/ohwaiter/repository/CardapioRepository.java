@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import br.com.valhalla.ohwaiter.model.Cardapio;
 
 @Repository
-public interface CardapioRepository extends JpaRepository<Cardapio,Integer> {
+public interface CardapioRepository extends JpaRepository<Cardapio,Long> {
 
 }

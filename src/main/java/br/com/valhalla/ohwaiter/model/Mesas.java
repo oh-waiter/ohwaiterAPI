@@ -4,22 +4,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Positive;
 
 @Entity
 public class Mesas {
+	@Positive(message = "A quantidade deve ser maior que zero!")
 	private int qtdCadeiras;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int numMesa;
+	private Long ID;
 	private Boolean dispoMesa;
 	
 	
 	
-	public Mesas(int qtdCadeiras, int numMesa, Boolean dispoMesa) {
-		super();
+	public Mesas(int qtdCadeiras, Long ID, Boolean dispoMesa) {
 		this.qtdCadeiras = qtdCadeiras;
-		this.numMesa = numMesa;
+		this.ID = ID;
 		this.dispoMesa = dispoMesa;
 	}
 	public int getQtdCadeiras() {
@@ -28,11 +29,11 @@ public class Mesas {
 	public void setQtdCadeiras(int qtdCadeiras) {
 		this.qtdCadeiras = qtdCadeiras;
 	}
-	public int getNumMesa() {
-		return numMesa;
+	public Long getID() {
+		return ID;
 	}
-	public void setNumMesas(int numMesas) {
-		this.numMesa = numMesas;
+	public void setID(Long ID) {
+		this.ID = ID;
 	}
 	public Boolean getDispoMesa() {
 		return dispoMesa;

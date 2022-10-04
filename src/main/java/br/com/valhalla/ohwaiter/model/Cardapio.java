@@ -5,34 +5,38 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import br.com.valhalla.ohwaiter.repository.CategoriasRepository;
+
 @Entity
 public class Cardapio {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int codItem;
+	private Long ID;
 	
-	private int categItem;
 	private String descItem;
 	private double valorItem;
 	private String tipoItem;
 	private String imgItem;
+	CategoriasRepository IDCategoria;
 	
 
-	public int getCodItem() {
-		return codItem;
+	public Cardapio(Long iD, CategoriasRepository categoriaItem, String descItem, double valorItem, String tipoItem, String imgItem) {
+		
+		ID = iD;
+		this.IDCategoria = categoriaItem;
+		this.descItem = descItem;
+		this.valorItem = valorItem;
+		this.tipoItem = tipoItem;
+		this.imgItem = imgItem;
 	}
 
-	public void setCodItem(int codItem) {
-		this.codItem = codItem;
+	public Long getID() {
+		return ID;
 	}
 
-	public int getCategItem() {
-		return categItem;
-	}
-
-	public void setCategItem(int categItem) {
-		this.categItem = categItem;
+	public void setID(Long codItem) {
+		this.ID = codItem;
 	}
 
 	public String getDescItem() {
