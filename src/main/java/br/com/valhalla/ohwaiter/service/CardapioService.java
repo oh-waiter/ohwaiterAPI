@@ -11,6 +11,7 @@ import br.com.valhalla.ohwaiter.repository.CardapioRepository;
 @Service
 public class CardapioService {
 	
+	
 	private CardapioRepository cardapioRepository;
 	
 	@Autowired
@@ -31,9 +32,8 @@ public class CardapioService {
         return cardapioRepository.findAll();
 	}
 	
-	public Cardapio alterarItemPorId(Long id){
-        Cardapio item = cardapioRepository.findById(id).orElse(null);
-        return cardapioRepository.save(item);
+	public Cardapio alterarItemCardapio(Cardapio cardapio){
+        return cardapioRepository.save(cardapio);
     }
 	
 	public void deletarItemPorId(Long id){

@@ -20,7 +20,11 @@ public class Cardapio {
 	private String imgItem;
 	CategoriasRepository IDCategoria;
 	
+	
+	
+	
 
+	public Cardapio() {}
 	public Cardapio(Long iD, CategoriasRepository categoriaItem, String descItem, double valorItem, String tipoItem, String imgItem) {
 		
 		ID = iD;
