@@ -31,8 +31,7 @@ public class CategoriasService {
 		return categoriaRepository.findAll();
 	}
 	
-	public Categorias aterarCategoriasPorID(Long ID) {
-		Categorias categorias = categoriaRepository.findById(ID).orElse(null);
+	public Categorias aterarCategoria(Categorias categorias) {
 		return categoriaRepository.save(categorias);
 	}
 	public void deletarCategorias(Long ID) {
