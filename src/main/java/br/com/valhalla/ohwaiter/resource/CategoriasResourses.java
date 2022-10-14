@@ -3,6 +3,8 @@ package br.com.valhalla.ohwaiter.resource;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,26 +20,30 @@ public class CategoriasResourses {
 	@Autowired
 	private CategoriasService service;
 	
-	@GetMapping
+	@GetMapping(value = "/{id}",
+			produces = MediaType.APPLICATION_JSON_VALUE)
 	public Categorias buscarCategoria(@PathVariable Long id) {
 		return service.buscarCategoriasID(id);
 	} 
-	@GetMapping
+	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public List <Categorias> buscarTodosOsItens() {
 		return service.buscarCategorias();
 	} 
-	@PostMapping
+	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
+			produces = MediaType.APPLICATION_JSON_VALUE)
 	public Categorias CadastrarCategoria(@RequestBody Categorias categorias) {
 		return service.salvarCategoria(categorias);
 	} 
-	@PutMapping
+	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
+			produces = MediaType.APPLICATION_JSON_VALUE)
 	public Categorias UpdateCategoria(@RequestBody Categorias categorias) {
 		return service.aterarCategoria(categorias);
 	}
 	
-	@DeleteMapping
-	public void DeleteItemCardapio(@PathVariable Long id) {
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<?> DeleteCategoria(@PathVariable Long id) {
 		service.deletarCategorias(id);
+		return ResponseEntity.noContent().build();
 	}
 
 }
