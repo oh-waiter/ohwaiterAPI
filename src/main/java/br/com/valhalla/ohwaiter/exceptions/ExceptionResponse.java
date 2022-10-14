@@ -1,4 +1,4 @@
-package br.com.curso.exceptions;
+package br.com.valhalla.ohwaiter.exceptions;
 
 import java.io.Serializable;
 import java.util.Date;

@@ -1,4 +1,4 @@
-package br.com.vahalla.ohwaiter.exceptions.handler;
+package br.com.valhalla.ohwaiter.exceptions.handler;
 
 import java.util.Date;
 
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import br.com.vahalla.ohwaiter.exceptions.ExceptionResponse;
-import br.com.vahalla.ohwaiter.exceptions.ResourceNotFoundException;
+import br.com.valhalla.ohwaiter.exceptions.ExceptionResponse;
+import br.com.valhalla.ohwaiter.exceptions.ResourceNotFoundException;
 
 @ControllerAdvice
 @RestController
