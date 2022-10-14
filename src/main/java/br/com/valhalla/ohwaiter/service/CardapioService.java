@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.ResourceAccessException;
 
+import br.com.vahalla.ohwaiter.exceptions.ResourceNotFoundException;
 import br.com.valhalla.ohwaiter.model.Cardapio;
 import br.com.valhalla.ohwaiter.repository.CardapioRepository;
 
@@ -33,11 +35,19 @@ public class CardapioService {
 	}
 	
 	public Cardapio alterarItemCardapio(Cardapio cardapio){
+		Cardapio entity = cardapioRepository.findById(cardapio.getID()).orElseThrow(()->
+		new ResourceAccessException("Nenhum registro encontrado para este ID!"));
+		entity.setTipoItem(cardapio.getTipoItem());
+		entity.setDescItem(cardapio.getDescItem());
+		entity.setValorItem(cardapio.getValorItem());
+		entity.setIDCategoria(cardapio.getIDCategoria());
         return cardapioRepository.save(cardapio);
     }
 	
 	public void deletarItemPorId(Long id){
-        cardapioRepository.deleteById(id);
+		Cardapio entity = cardapioRepository.findById(id).orElseThrow(()->
+		new ResourceNotFoundException("Nenhum registro encontrado para este ID!"));
+        cardapioRepository.delete(entity);
     }
 
 }

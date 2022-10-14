@@ -1,5 +1,8 @@
 package br.com.valhalla.ohwaiter.model;
 
+import java.util.Objects;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,15 +14,12 @@ public class Categorias {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long ID;
-	
+	@Column(name="Categorias", nullable = false, length = 15)
 	private String nomeCategoria;
 	
 	
 
-	public Categorias(Long codCategoria, String nomeCategoria) {
-		super();
-		this.ID = codCategoria;
-		this.nomeCategoria = nomeCategoria;
+	public Categorias() {
 	}
 
 	public Long getID() {
@@ -37,6 +37,25 @@ public class Categorias {
 	public void setNomeCategoria(String nomeCategoria) {
 		this.nomeCategoria = nomeCategoria;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(ID, nomeCategoria);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Categorias other = (Categorias) obj;
+		return Objects.equals(ID, other.ID) && Objects.equals(nomeCategoria, other.nomeCategoria);
+	}
+	
+	
 	
 	
 
