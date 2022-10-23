@@ -35,34 +35,34 @@ public class FuncionarioResource {
 
     @GetMapping("/health")
     public String health() {
+        log.info("Resource: Verificação de serviço health");
         return "OK!";
     }
 
     @GetMapping()
     public List<FuncionarioDTO> buscarTodosOsFuncionarios() {
+        log.info("Resource: Pegando a lista de funcionários");
         List<FuncionarioDTO> dtos = FuncionarioDTO.modelToDto(funcionarioService.buscarTodosOsFuncionarios());
         return dtos;
     }
 
-    @GetMapping("/{id}")
-    public Funcionario buscarFuncionarioPeloId(Long id) {
-        return funcionarioService.buscarFuncionarioPorId(id);
-    }
-
     @PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE })
     public Funcionario salvarFuncionario(@RequestBody FuncionarioDTO funcionarioDto) {
+        log.info("Resource: Salvando funcionários {}", funcionarioDto);
         Funcionario funcionario = FuncionarioDTO.DtoToModel(funcionarioDto);
         return funcionarioService.salvarFuncionario(funcionario);
     }
 
     @PutMapping
     public Funcionario alterarFuncionario(@RequestBody FuncionarioDTO funcionarioDto) {
+        log.info("Resource: Editando funcionários {}", funcionarioDto);
         Funcionario funcionario = FuncionarioDTO.DtoToModel(funcionarioDto);
         return funcionarioService.alterarFuncionarioPorId(funcionario);
     }
 
     @DeleteMapping("/{id}")
     public void excluirFuncionario(@PathVariable Long id) {
+        log.info("Resource: Excluindo funcionários {}", id);
         funcionarioService.deletarFuncionarioPorId(id);
     }
 }
