@@ -25,6 +25,17 @@ public class Mesas {
 	
 	public Mesas() {} 
 	
+	
+	
+	public Mesas(Long iD, int qtdCadeiras, Boolean dispoMesa) {
+		super();
+		ID = iD;
+		this.qtdCadeiras = qtdCadeiras;
+		this.dispoMesa = dispoMesa;
+	}
+
+
+
 	public int getQtdCadeiras() {
 		return qtdCadeiras;
 	}

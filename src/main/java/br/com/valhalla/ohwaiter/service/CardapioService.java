@@ -37,10 +37,10 @@ public class CardapioService {
 	public Cardapio alterarItemCardapio(Cardapio cardapio){
 		Cardapio entity = cardapioRepository.findById(cardapio.getID()).orElseThrow(()->
 		new ResourceAccessException("Nenhum registro encontrado para este ID!"));
-		entity.setTipoItem(cardapio.getTipoItem());
 		entity.setDescItem(cardapio.getDescItem());
 		entity.setValorItem(cardapio.getValorItem());
-		entity.setIDCategoria(cardapio.getIDCategoria());
+		entity.setImgItem(cardapio.getImgItem());
+		entity.setCategoria(cardapio.getCategoria());
         return cardapioRepository.save(cardapio);
     }
 	
