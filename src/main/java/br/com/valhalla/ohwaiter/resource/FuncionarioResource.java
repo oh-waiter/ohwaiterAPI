@@ -2,8 +2,10 @@ package br.com.valhalla.ohwaiter.resource;
 
 import java.util.List;
 
-import org.springframework.http.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.valhalla.ohwaiter.model.Funcionario;
-import br.com.valhalla.ohwaiter.model.Enums.Funcao;
 import br.com.valhalla.ohwaiter.resource.DTO.FuncionarioDTO;
 import br.com.valhalla.ohwaiter.service.FuncionarioService;
 import lombok.extern.slf4j.Slf4j;
@@ -33,36 +34,37 @@ public class FuncionarioResource {
         this.funcionarioService = funcionarioService;
     }
 
-    @GetMapping("/health")
+    @GetMapping(path = "/health", produces = MediaType.APPLICATION_JSON_VALUE)
     public String health() {
         log.info("Resource: Verificação de serviço health");
         return "OK!";
     }
 
-    @GetMapping()
-    public List<FuncionarioDTO> buscarTodosOsFuncionarios() {
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<FuncionarioDTO>> buscarTodosOsFuncionarios() {
         log.info("Resource: Pegando a lista de funcionários");
         List<FuncionarioDTO> dtos = FuncionarioDTO.modelToDto(funcionarioService.buscarTodosOsFuncionarios());
-        return dtos;
+        return ResponseEntity.ok().body(dtos);
     }
 
-    @PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE })
-    public Funcionario salvarFuncionario(@RequestBody FuncionarioDTO funcionarioDto) {
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Funcionario> salvarFuncionario(@RequestBody FuncionarioDTO funcionarioDto) {
         log.info("Resource: Salvando funcionários {}", funcionarioDto);
         Funcionario funcionario = FuncionarioDTO.DtoToModel(funcionarioDto);
-        return funcionarioService.salvarFuncionario(funcionario);
+        return ResponseEntity.status(HttpStatus.CREATED).body(funcionarioService.salvarFuncionario(funcionario));
     }
 
-    @PutMapping
-    public Funcionario alterarFuncionario(@RequestBody FuncionarioDTO funcionarioDto) {
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Funcionario> alterarFuncionario(@RequestBody FuncionarioDTO funcionarioDto) {
         log.info("Resource: Editando funcionários {}", funcionarioDto);
         Funcionario funcionario = FuncionarioDTO.DtoToModel(funcionarioDto);
-        return funcionarioService.alterarFuncionarioPorId(funcionario);
+        return ResponseEntity.ok().body(funcionarioService.alterarFuncionarioPorId(funcionario));
     }
 
     @DeleteMapping("/{id}")
-    public void excluirFuncionario(@PathVariable Long id) {
+    public ResponseEntity<String> excluirFuncionario(@PathVariable Long id) {
         log.info("Resource: Excluindo funcionários {}", id);
         funcionarioService.deletarFuncionarioPorId(id);
+        return ResponseEntity.ok().body("Excluido com sucesso");
     }
 }

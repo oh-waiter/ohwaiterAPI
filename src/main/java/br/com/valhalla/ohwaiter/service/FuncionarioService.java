@@ -3,6 +3,7 @@ package br.com.valhalla.ohwaiter.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
 
 import br.com.valhalla.ohwaiter.model.Funcionario;
@@ -52,8 +53,9 @@ public class FuncionarioService {
         try {
             log.debug("Service: Id do funcionário que será excluido {}", id);
             funcionarioRepository.deleteById(id);
-        } catch (Exception erro) {
+        } catch (IllegalArgumentException erro) {
             log.error("Service: Erro ao excluir o funcionário {}", erro);
+            throw new IllegalArgumentException("Id não pode ser nulo");
         }
     }
 }
