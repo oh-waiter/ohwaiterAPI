@@ -1,6 +1,7 @@
 package br.com.valhalla.ohwaiter.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,8 @@ public class CategoriasService {
 	}
 	
 	public Categorias buscarCategoriasID(Long id) {
-		return categoriaRepository.findById(id).orElse(null);
+		Optional<Categorias> obj = categoriaRepository.findById(id);
+		return obj.orElseThrow(()->new ResourceNotFoundException("Nenhum registro encontrado para este ID!") );
 	}
 	
 	public List<Categorias> buscarCategorias(){
