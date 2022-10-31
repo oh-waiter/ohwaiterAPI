@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Cardapio {
 	
@@ -22,6 +24,8 @@ public class Cardapio {
 	private double valorItem;
 	@Column(name="Imagem", nullable = false, length = 50)
 	private String imgItem;
+	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name= "categoria_id")
 	private Categorias categoria;
