@@ -1,6 +1,6 @@
 <configuration>
 
-    <property name="HOME_LOG" value="${user.home}/logs/ohwaiter/ohwaiterDev.log"/>
+    <property name="HOME_LOG" value="logs/ohWaiterAPI.log"/>
 
     <appender name="FILE-ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${HOME_LOG}</file>
@@ -25,7 +25,7 @@
         <appender-ref ref="FILE-ROLLING"/>
     </logger>
 
-    <root level="error">
+    <root level="info">
         <appender-ref ref="FILE-ROLLING"/>
     </root>
 </configuration>

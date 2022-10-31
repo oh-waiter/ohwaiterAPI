@@ -62,9 +62,9 @@ public class FuncionarioResource {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> excluirFuncionario(@PathVariable Long id) {
+    public ResponseEntity<Void> excluirFuncionario(@PathVariable Long id) {
         log.info("Resource: Excluindo funcionários {}", id);
         funcionarioService.deletarFuncionarioPorId(id);
-        return ResponseEntity.ok().body("Excluido com sucesso");
+        return ResponseEntity.noContent().build();
     }
 }
