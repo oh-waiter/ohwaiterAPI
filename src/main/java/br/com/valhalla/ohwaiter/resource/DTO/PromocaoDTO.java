@@ -28,10 +28,11 @@ public class PromocaoDTO {
         .codigoPromocional(promocao.getCodigoPromocional())
         .tipoPromocao(promocao.getTipoPromocao())
         .descricaoPromocao(promocao.getDescricaoPromocao())
+        .ativo(promocao.getAtivo())
         .build();
     }
 
-    public static List<PromocaoDTO> modelToDto(List<PromocaoDTO> promocoes){
+    public static List<PromocaoDTO> modelToDto(List<Promocao> promocoes){
         List<PromocaoDTO> promocaoDtos = new ArrayList<>();
         promocoes.forEach(promocao ->{
             promocaoDtos.add(PromocaoDTO.builder()
@@ -40,6 +41,7 @@ public class PromocaoDTO {
             .codigoPromocional(promocao.getCodigoPromocional())
             .tipoPromocao(promocao.getTipoPromocao())
             .descricaoPromocao(promocao.getDescricaoPromocao())
+            .ativo(promocao.getAtivo())
             .build());
             });
         return promocaoDtos;
@@ -52,6 +54,7 @@ public class PromocaoDTO {
             .codigoPromocional(promocaoDto.getCodigoPromocional())
             .tipoPromocao(promocaoDto.getTipoPromocao())
             .descricaoPromocao(promocaoDto.getDescricaoPromocao())
+            .ativo(promocaoDto.getAtivo())
             .build();
     }
 

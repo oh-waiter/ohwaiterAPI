@@ -34,6 +34,7 @@ public class PromocaoResources {
         this.promocaoService = promocaoService;
     }
 
+
     @GetMapping()
     public List<PromocaoDTO> buscarTodasAsPromocoes() {
         log.info("Resource: Pegando a lista de promocoes");
