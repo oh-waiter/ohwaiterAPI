@@ -28,21 +28,21 @@ import br.com.valhalla.ohwaiter.repository.CardapioRepository;
 @SpringBootTest
 class CardapioServiceTest {
 
-	final Long ID                 = 1L;
+	final Long ID = 1L;
 	final String item = "Picanha maturada";
 	final Double valor = 100.90;
 	final String imagem = "https://imagempicanha.com";
 	Categorias categoria;
-	
+
 	@InjectMocks
 	private CardapioService service;
-	
+
 	@Mock
 	private CardapioRepository repository;
-	
+
 	private Cardapio cardapio;
-	
-	private Optional<Cardapio>optionalCardapio;
+
+	private Optional<Cardapio> optionalCardapio;
 
 	@BeforeEach
 	void setUp() throws Exception {
@@ -62,6 +62,7 @@ class CardapioServiceTest {
 		Assertions.assertEquals(imagem, response.getImgItem());
 		Assertions.assertEquals(categoria, response.getCategoria());
 	}
+
 	@Test
 	void quandoCriarUmaNovoItemRetorneUmaViolacaoDeIntegridadeDeDados() {
 		when(repository.findById(Mockito.anyLong())).thenReturn(optionalCardapio);
@@ -76,7 +77,7 @@ class CardapioServiceTest {
 	@Test
 	void quandoFazerUmaBuscaPorIDRetorneUmaInstanciaDeCardapio() {
 		Mockito.when(repository.findById(Mockito.anyLong())).thenReturn(optionalCardapio);
-		Cardapio response =service.buscarItemPorID(ID);
+		Cardapio response = service.buscarItemPorID(ID);
 		Assertions.assertNotNull(response);
 		Assertions.assertEquals(Cardapio.class, response.getClass());
 		Assertions.assertEquals(ID, response.getID());
@@ -85,6 +86,7 @@ class CardapioServiceTest {
 		Assertions.assertEquals(imagem, response.getImgItem());
 		Assertions.assertEquals(categoria, response.getCategoria());
 	}
+
 	@Test
 	void quandoFazerUmaBuscaPorIDRetorneUmObjetoNaoEncontrado() {
 		when(repository.findById(Mockito.anyLong())).thenThrow
@@ -96,8 +98,6 @@ class CardapioServiceTest {
 			assertEquals("Nenhum registro encontrado para este ID!", ex.getMessage());
 		}
 	}
-	
-	
 
 	@Test
 	void quandoBuscarTodosRetorneUmaListaDeItens() {
@@ -128,19 +128,19 @@ class CardapioServiceTest {
 		Assertions.assertEquals(categoria, response.getCategoria());
 	}
 
-	@Test
+	@Test // Metodo com erro
 	void deleteComSucesso() {
 		when(repository.findById(Mockito.anyLong())).thenReturn(optionalCardapio);
 		doNothing().when(repository).deleteById(Mockito.anyLong());
 		service.deletarItemPorId(ID);
 		verify(repository, times(0)).deleteById(Mockito.anyLong());
 	}
-	
+
+	// Método com erro
 	private void startCardapio() {
-		cardapio = new Cardapio(ID,item,valor, imagem, categoria);
-		optionalCardapio = Optional.of(new Cardapio(ID,item,valor, imagem, categoria));
-		
-		
+		cardapio = new Cardapio(ID, item, valor, imagem, categoria);
+		optionalCardapio = Optional.of(new Cardapio(ID, item, valor, imagem, categoria));
+
 	}
 
 }

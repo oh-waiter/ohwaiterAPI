@@ -1,0 +1,4 @@
+2022-11-01 10:22:08,809 INFO br.com.valhalla.ohwaiter.service.FuncionarioService [main] Service: Início da serviço de salvar funcionário
+2022-11-01 10:22:08,826 DEBUG br.com.valhalla.ohwaiter.service.FuncionarioService [main] Service: Funcionário adicionado Funcionario(id=null, nome=teste, cpf=98991172008, funcao=COORDENADOR, ativo=true)
+2022-11-01 10:48:56,095 INFO br.com.valhalla.ohwaiter.service.FuncionarioService [main] Service: Início da serviço de salvar funcionário
+2022-11-01 10:48:56,102 DEBUG br.com.valhalla.ohwaiter.service.FuncionarioService [main] Service: Funcionário adicionado Funcionario(id=null, nome=teste, cpf=98991172008, funcao=COORDENADOR, ativo=true)
