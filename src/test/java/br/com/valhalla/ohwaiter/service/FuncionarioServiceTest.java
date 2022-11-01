@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import br.com.valhalla.ohwaiter.model.Funcionario;
@@ -59,7 +60,7 @@ public class FuncionarioServiceTest {
     @Test
     @DisplayName("Teste ao tentar salvar um funcionario com CPF repetido")
     public void TesteComFuncionarioComCPFRepetido() {
-       doThrow(null)
+       Mockito.when(null)
     }
 
 }
