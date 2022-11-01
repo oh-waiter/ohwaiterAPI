@@ -58,7 +58,7 @@ public class FuncionarioResource {
     public ResponseEntity<Funcionario> alterarFuncionario(@RequestBody FuncionarioDTO funcionarioDto) {
         log.info("Resource: Editando funcionários {}", funcionarioDto);
         Funcionario funcionario = FuncionarioDTO.DtoToModel(funcionarioDto);
-        return ResponseEntity.ok().body(funcionarioService.alterarFuncionarioPorId(funcionario));
+        return ResponseEntity.ok().body(funcionarioService.alterarFuncionario(funcionario));
     }
 
     @DeleteMapping("/{id}")

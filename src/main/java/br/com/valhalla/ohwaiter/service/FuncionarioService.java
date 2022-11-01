@@ -36,7 +36,7 @@ public class FuncionarioService {
         return funcionarioRepository.findAll();
     }
 
-    public Funcionario alterarFuncionarioPorId(Funcionario funcionario) {
+    public Funcionario alterarFuncionario(Funcionario funcionario) {
         log.info("Service: Início da serviço de alterar funcionário");
         try {
             log.debug("Service: Funcionário alterado {}", funcionario);

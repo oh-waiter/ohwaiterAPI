@@ -4,9 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.ResourceAccessException;
 
-import br.com.valhalla.ohwaiter.exceptions.ResourceNotFoundException;
 import br.com.valhalla.ohwaiter.model.Cardapio;
 import br.com.valhalla.ohwaiter.repository.CardapioRepository;
 

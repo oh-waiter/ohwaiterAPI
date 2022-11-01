@@ -2,3 +2,29 @@
 2022-11-01 10:22:08,826 DEBUG br.com.valhalla.ohwaiter.service.FuncionarioService [main] Service: Funcionário adicionado Funcionario(id=null, nome=teste, cpf=98991172008, funcao=COORDENADOR, ativo=true)
 2022-11-01 10:48:56,095 INFO br.com.valhalla.ohwaiter.service.FuncionarioService [main] Service: Início da serviço de salvar funcionário
 2022-11-01 10:48:56,102 DEBUG br.com.valhalla.ohwaiter.service.FuncionarioService [main] Service: Funcionário adicionado Funcionario(id=null, nome=teste, cpf=98991172008, funcao=COORDENADOR, ativo=true)
+2022-11-01 19:05:13,126 INFO br.com.valhalla.ohwaiter.service.FuncionarioService [main] Service: Início da serviço de alterar funcionário
+2022-11-01 19:05:13,127 DEBUG br.com.valhalla.ohwaiter.service.FuncionarioService [main] Service: Funcionário alterado null
+2022-11-01 19:05:13,141 INFO br.com.valhalla.ohwaiter.service.FuncionarioService [main] Service: Início da serviço de alterar funcionário
+2022-11-01 19:05:13,141 DEBUG br.com.valhalla.ohwaiter.service.FuncionarioService [main] Service: Funcionário alterado Funcionario(id=1, nome=teste1, cpf=98991172008, funcao=COORDENADOR, ativo=true)
+2022-11-01 19:16:49,736 INFO br.com.valhalla.ohwaiter.service.FuncionarioService [main] Service: Início da serviço de salvar funcionário
+2022-11-01 19:16:49,737 DEBUG br.com.valhalla.ohwaiter.service.FuncionarioService [main] Service: Funcionário adicionado Funcionario(id=null, nome=teste, cpf=98991172008, funcao=COORDENADOR, ativo=true)
+2022-11-01 19:16:49,797 INFO br.com.valhalla.ohwaiter.service.FuncionarioService [main] Service: Início da serviço de alterar funcionário
+2022-11-01 19:16:49,798 DEBUG br.com.valhalla.ohwaiter.service.FuncionarioService [main] Service: Funcionário alterado null
+2022-11-01 19:16:49,798 INFO br.com.valhalla.ohwaiter.service.FuncionarioService [main] Service: Início da serviço de alterar funcionário
+2022-11-01 19:16:49,798 DEBUG br.com.valhalla.ohwaiter.service.FuncionarioService [main] Service: Funcionário alterado Funcionario(id=1, nome=teste1, cpf=98991172008, funcao=COORDENADOR, ativo=true)
+2022-11-01 20:45:58,240 INFO br.com.valhalla.ohwaiter.service.FuncionarioService [main] Service: Início da serviço de salvar funcionário
+2022-11-01 20:45:58,241 DEBUG br.com.valhalla.ohwaiter.service.FuncionarioService [main] Service: Funcionário adicionado Funcionario(id=null, nome=teste, cpf=98991172008, funcao=COORDENADOR, ativo=true)
+2022-11-01 20:45:58,317 INFO br.com.valhalla.ohwaiter.service.FuncionarioService [main] Service: Início da serviço de alterar funcionário
+2022-11-01 20:45:58,317 DEBUG br.com.valhalla.ohwaiter.service.FuncionarioService [main] Service: Funcionário alterado null
+2022-11-01 20:45:58,317 INFO br.com.valhalla.ohwaiter.service.FuncionarioService [main] Service: Início da serviço de alterar funcionário
+2022-11-01 20:45:58,317 DEBUG br.com.valhalla.ohwaiter.service.FuncionarioService [main] Service: Funcionário alterado Funcionario(id=1, nome=teste1, cpf=98991172008, funcao=COORDENADOR, ativo=true)
+2022-11-01 20:45:58,323 INFO br.com.valhalla.ohwaiter.service.FuncionarioService [main] Service: Início do serviço de buscar todos os funcionário
+2022-11-01 20:45:58,324 INFO br.com.valhalla.ohwaiter.service.FuncionarioService [main] Service: Início do serviço de buscar todos os funcionário
+2022-11-01 20:47:32,667 INFO br.com.valhalla.ohwaiter.service.FuncionarioService [main] Service: Início da serviço de salvar funcionário
+2022-11-01 20:47:32,668 DEBUG br.com.valhalla.ohwaiter.service.FuncionarioService [main] Service: Funcionário adicionado Funcionario(id=null, nome=teste, cpf=98991172008, funcao=COORDENADOR, ativo=true)
+2022-11-01 20:47:32,750 INFO br.com.valhalla.ohwaiter.service.FuncionarioService [main] Service: Início da serviço de alterar funcionário
+2022-11-01 20:47:32,750 DEBUG br.com.valhalla.ohwaiter.service.FuncionarioService [main] Service: Funcionário alterado null
+2022-11-01 20:47:32,750 INFO br.com.valhalla.ohwaiter.service.FuncionarioService [main] Service: Início da serviço de alterar funcionário
+2022-11-01 20:47:32,750 DEBUG br.com.valhalla.ohwaiter.service.FuncionarioService [main] Service: Funcionário alterado Funcionario(id=1, nome=teste1, cpf=98991172008, funcao=COORDENADOR, ativo=true)
+2022-11-01 20:47:32,759 INFO br.com.valhalla.ohwaiter.service.FuncionarioService [main] Service: Início do serviço de buscar todos os funcionário
+2022-11-01 20:47:32,760 INFO br.com.valhalla.ohwaiter.service.FuncionarioService [main] Service: Início do serviço de buscar todos os funcionário
