@@ -26,19 +26,19 @@ import br.com.valhalla.ohwaiter.repository.CategoriasRepository;
 
 @SpringBootTest
 class CategoriasServiceTest {
-	
-	final Long ID                 = 1L;
+
+	final Long ID = 1L;
 	final String categoria = "Bebidas";
-	
+
 	@InjectMocks
 	private CategoriasService service;
-	
+
 	@Mock
 	private CategoriasRepository repository;
-	
+
 	private Categorias categorias;
-	
-	private Optional<Categorias>optionalCategoria;
+
+	private Optional<Categorias> optionalCategoria;
 
 	@BeforeEach
 	void setUp() throws Exception {
@@ -55,6 +55,7 @@ class CategoriasServiceTest {
 		assertEquals(ID, response.getID());
 		assertEquals(categoria, response.getNomeCategoria());
 	}
+
 	@Test
 	void quandoCriarUmaNovaCategoriaRetorneUmaViolacaoDeIntegridadeDeDados() {
 		when(repository.findById(Mockito.anyLong())).thenReturn(optionalCategoria);
@@ -69,12 +70,13 @@ class CategoriasServiceTest {
 	@Test
 	void quandoFazerUmaBuscaPorIDRetorneUmaInstanciaDeCategoria() {
 		Mockito.when(repository.findById(Mockito.anyLong())).thenReturn(optionalCategoria);
-		Categorias response =service.buscarCategoriasID(ID);
+		Categorias response = service.buscarCategoriasID(ID);
 		Assertions.assertNotNull(response);
 		Assertions.assertEquals(Categorias.class, response.getClass());
 		Assertions.assertEquals(ID, response.getID());
 		Assertions.assertEquals(categoria, response.getNomeCategoria());
 	}
+
 	@Test
 	void quandoFazerUmaBuscaPorIDRetorneUmObjetoNaoEncontrado() {
 		when(repository.findById(Mockito.anyLong())).thenThrow
@@ -86,8 +88,6 @@ class CategoriasServiceTest {
 			assertEquals("Nenhum registro encontrado para este ID!", ex.getMessage());
 		}
 	}
-	
-	
 
 	@Test
 	void quandoBuscarTodosRetorneUmaListaDeCategorias() {
@@ -119,12 +119,12 @@ class CategoriasServiceTest {
 		service.deletarCategorias(ID);
 		verify(repository, times(0)).deleteById(Mockito.anyLong());
 	}
-	
+
+	/* Método com erro */
 	private void startCategotias() {
-		categorias = new Categorias(ID,categoria);
-		optionalCategoria = Optional.of(new Categorias(ID,categoria));
-		
-		
+		categorias = new Categorias(ID, categoria);
+		optionalCategoria = Optional.of(new Categorias(ID, categoria));
+
 	}
 
 }
