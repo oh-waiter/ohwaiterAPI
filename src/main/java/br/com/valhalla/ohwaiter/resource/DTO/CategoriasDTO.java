@@ -1,4 +1,4 @@
-package br.com.valhalla.ohwaiter.dto;
+package br.com.valhalla.ohwaiter.resource.DTO;
 
 import java.io.Serializable;
 

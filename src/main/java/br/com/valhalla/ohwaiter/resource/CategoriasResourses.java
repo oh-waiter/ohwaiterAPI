@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.valhalla.ohwaiter.dto.CategoriasDTO;
 import br.com.valhalla.ohwaiter.model.Categorias;
+import br.com.valhalla.ohwaiter.resource.DTO.CategoriasDTO;
 import br.com.valhalla.ohwaiter.service.CategoriasService;
 
 @RestController

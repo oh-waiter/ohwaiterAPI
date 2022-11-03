@@ -28,7 +28,7 @@ public class Cardapio {
 	private double valorItem;
 	@Column(name = "Imagem", nullable = false, length = 50)
 	private String imgItem;
-	
+	private Integer tempoPreparo;
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "categoria_id")
