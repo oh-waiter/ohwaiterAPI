@@ -1,5 +1,6 @@
 package br.com.valhalla.ohwaiter.service;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -12,7 +13,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import br.com.valhalla.ohwaiter.model.Funcionario;
@@ -47,6 +47,7 @@ public class FuncionarioServiceTest {
                 .ativo(true)
                 .funcao(Funcao.COORDENADOR)
                 .build();
+
         when(funcionarioRepository.save(any(Funcionario.class))).thenReturn(funcionarioSave);
         Funcionario funcionarioRetorno = funcionarioService.salvarFuncionario(funcionario);
 
@@ -56,9 +57,51 @@ public class FuncionarioServiceTest {
     }
 
     @Test
-    @DisplayName("Teste ao tentar salvar um funcionario com CPF repetido")
-    public void TesteComFuncionarioComCPFRepetido() {
-       Mockito.when(null);
+    @DisplayName("Teste para atualizar funcionario")
+    public void TesteDeAtualizacaoDeFuncionarios() {
+        funcionario = Funcionario.builder()
+                .id(1L)
+                .nome("teste1")
+                .cpf("98991172008")
+                .ativo(true)
+                .funcao(Funcao.COORDENADOR).build();
+
+        Funcionario funcionarioUpdate = Funcionario.builder()
+                .id(1L)
+                .nome("teste1")
+                .cpf("98991172008")
+                .ativo(true)
+                .funcao(Funcao.COORDENADOR)
+                .build();
+
+        when(funcionarioService.alterarFuncionario(any(Funcionario.class))).thenReturn(funcionarioUpdate);
+        Funcionario funcionarioRetorno = funcionarioService.alterarFuncionario(funcionarioUpdate);
+
+        Assertions.assertThat(funcionarioRetorno).usingRecursiveComparison().isEqualTo(funcionarioUpdate);
+        verify(funcionarioRepository, times(1)).save(any(Funcionario.class));
+        verifyNoMoreInteractions(funcionarioRepository);
     }
 
+    @Test
+    @DisplayName("Excluir Funcionario")
+    public void ExcluirFuncionarioUsandoUmFuncionarioPorParametro() {
+        Long funcionarioId = 1L;
+
+        funcionarioService.deletarFuncionarioPorId(funcionarioId);
+
+        verify(funcionarioRepository, times(1)).deleteById(funcionarioId);
+    }
+
+    @Test()
+    @DisplayName("Enviar throw IllegalArgumentException ao enviar um id null")
+    public void ExibirThrowQuandoIdVierNull() {
+        Long id = null;
+        doThrow(new IllegalArgumentException("Id não pode ser nulo")).when(funcionarioRepository)
+                .deleteById(id);
+        try {
+            funcionarioService.deletarFuncionarioPorId(id);
+        } catch (IllegalArgumentException e) {
+            assertEquals("Id não pode ser nulo", e.getMessage());
+        }
+    }
 }

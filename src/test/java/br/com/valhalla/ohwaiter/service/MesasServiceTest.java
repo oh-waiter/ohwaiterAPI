@@ -21,7 +21,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataIntegrityViolationException;
 
 import br.com.valhalla.ohwaiter.exceptions.ResourceNotFoundException;
-import br.com.valhalla.ohwaiter.model.Cardapio;
 import br.com.valhalla.ohwaiter.model.Mesas;
 import br.com.valhalla.ohwaiter.repository.MesasRepository;
 @SpringBootTest
