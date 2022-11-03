@@ -1,6 +1,5 @@
 package br.com.valhalla.ohwaiter.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -26,6 +25,6 @@ public class Categorias {
 	private Long ID;
 	private String nomeCategoria;
 	@OneToMany(mappedBy = "categoria")
-	private List<Cardapio> cardapio = new ArrayList<Cardapio>();
+	private List<Cardapio> cardapios;
 	
 }
