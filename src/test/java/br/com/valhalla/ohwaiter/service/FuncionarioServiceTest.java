@@ -1,8 +1,6 @@
 package br.com.valhalla.ohwaiter.service;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -60,7 +58,7 @@ public class FuncionarioServiceTest {
     @Test
     @DisplayName("Teste ao tentar salvar um funcionario com CPF repetido")
     public void TesteComFuncionarioComCPFRepetido() {
-       Mockito.when(null)
+       Mockito.when(null);
     }
 
 }

@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -17,6 +18,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Categorias {
 
 	@Id
@@ -25,5 +27,5 @@ public class Categorias {
 	private String nomeCategoria;
 	@OneToMany(mappedBy = "categoria")
 	private List<Cardapio> cardapio = new ArrayList<Cardapio>();
-
+	
 }

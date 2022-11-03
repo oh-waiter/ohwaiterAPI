@@ -120,10 +120,9 @@ class CategoriasServiceTest {
 		verify(repository, times(0)).deleteById(Mockito.anyLong());
 	}
 
-	/* Método com erro */
 	private void startCategotias() {
-		categorias = new Categorias(ID, categoria);
-		optionalCategoria = Optional.of(new Categorias(ID, categoria));
+		categorias = Categorias.builder().ID(ID).nomeCategoria(categoria).build();
+		optionalCategoria = Optional.of( Categorias.builder().ID(ID).nomeCategoria(categoria).build());
 
 	}
 
