@@ -128,7 +128,7 @@ class CardapioServiceTest {
 		Assertions.assertEquals(categoria, response.getCategoria());
 	}
 
-	@Test // Metodo com erro
+	@Test 
 	void deleteComSucesso() {
 		when(repository.findById(Mockito.anyLong())).thenReturn(optionalCardapio);
 		doNothing().when(repository).deleteById(Mockito.anyLong());
@@ -136,10 +136,11 @@ class CardapioServiceTest {
 		verify(repository, times(0)).deleteById(Mockito.anyLong());
 	}
 
-	// Método com erro
 	private void startCardapio() {
-		cardapio = new Cardapio(ID, item, valor, imagem, categoria);
-		optionalCardapio = Optional.of(new Cardapio(ID, item, valor, imagem, categoria));
+		cardapio = Cardapio.builder().ID(ID).descItem(item).valorItem(valor)
+				.imgItem(imagem).categoria(categoria).build();
+		optionalCardapio = Optional.of(Cardapio.builder().ID(ID).descItem(item).valorItem(valor)
+				.imgItem(imagem).categoria(categoria).build());
 
 	}
 
