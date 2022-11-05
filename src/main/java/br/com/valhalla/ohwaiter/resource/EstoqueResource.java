@@ -3,6 +3,10 @@ package br.com.valhalla.ohwaiter.resource;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,10 +17,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.valhalla.ohwaiter.model.Estoque;
+import br.com.valhalla.ohwaiter.resource.DTO.EstoqueDTO;
 import br.com.valhalla.ohwaiter.service.EstoqueService;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("estoque")
 @Slf4j
 public class EstoqueResource {
@@ -28,33 +34,37 @@ public class EstoqueResource {
         this.estoqueService = estoqueService;
     }
 
-    @GetMapping("/health")
+    @GetMapping(path = "/health", produces = MediaType.APPLICATION_JSON_VALUE)
     public String health() {
         log.info("Resource: Verificação de serviço health");
         return "OK!";
     }
 
-    @GetMapping
-    public List<Estoque> buscarTodosOsEstoques() {
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<EstoqueDTO>> buscarTodosOsEstoques() {
         log.info("Resource: Pegando a lista de estoque");
-        return estoqueService.buscarTodosOsProdutos();
+        List<EstoqueDTO> dtos = EstoqueDTO.modelToDto(estoqueService.buscarTodosOsProdutos());
+        return ResponseEntity.ok().body(dtos);
     }
 
-    @PostMapping
-    public Estoque salvarEstoque(@RequestBody Estoque estoqueDto) {
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Estoque> salvarEstoque(@RequestBody EstoqueDTO estoqueDto) {
         log.info("Resource: Salvando estoque {}", estoqueDto);
-        return estoqueService.salvarProduto(estoqueDto);
+        Estoque estoque = EstoqueDTO.DtoToModel(estoqueDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(estoqueService.salvarProduto(estoque));
     }
 
-    @PutMapping
-    public Estoque alterarEstoque(@RequestBody Estoque estoqueDto) {
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Estoque> alterarEstoque(@RequestBody EstoqueDTO estoqueDto) {
         log.info("Resource: Alterando estoque {}", estoqueDto);
-        return estoqueService.alterarProduto(estoqueDto);
+        Estoque estoque = EstoqueDTO.DtoToModel(estoqueDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(estoqueService.alterarProduto(estoque));
     }
 
     @DeleteMapping("{id}")
-    public void excluirProdutoDoEstoque(@PathVariable Long id) {
+    public ResponseEntity<Void> excluirProdutoDoEstoque(@PathVariable Long id) {
         log.info("Resource: excluindo estoque {}", id);
         estoqueService.deletarProdutoPorId(id);
+        return ResponseEntity.noContent().build();
     }
 }

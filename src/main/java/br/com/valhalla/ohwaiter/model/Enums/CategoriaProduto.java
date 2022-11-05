@@ -5,11 +5,20 @@ public enum CategoriaProduto {
 
     private String descricao = null;
 
-    CategoriaProduto(String descricao){
+    CategoriaProduto(String descricao) {
         this.descricao = descricao;
     }
 
-    public String getDescricao(){
+    public String getDescricao() {
         return descricao;
+    }
+
+    public static CategoriaProduto getEnum(String categoria) {
+        if (categoria.equals("Ingrediente")) {
+            return INGREDIENTE;
+        } else if (categoria.equals("Utilitario")) {
+            return UTILITARIO;
+        }
+        return BEBIDA;
     }
 }

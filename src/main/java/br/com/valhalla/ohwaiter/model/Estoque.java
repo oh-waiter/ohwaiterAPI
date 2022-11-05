@@ -11,10 +11,16 @@ import javax.validation.constraints.PositiveOrZero;
 
 import br.com.valhalla.ohwaiter.model.Enums.CategoriaProduto;
 import br.com.valhalla.ohwaiter.model.Enums.UnidadeQuantidade;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Estoque {
 
     @Id
