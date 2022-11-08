@@ -10,6 +10,14 @@ spring:
       hibernate:
         format_sql: true
         show_sql: true
+  rabbitmq:
+    host: localhost
+    password: guest
+    port: 5672
+    username: guest
+
 server:
   error:
     include-message: always
+queue:
+  name: teste
