@@ -19,5 +19,4 @@ public class FilaReservaResources {
         queueSender.send("It's OK!");
         return "Ok!";
     }
-
 }
