@@ -15,13 +15,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Reserva {
+public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String reserva;
-    private Mesas mesas;
-    private Prato prato;
-    private Cliente cliente;
+    private String nome;
+    private String cpf;
+
 }
