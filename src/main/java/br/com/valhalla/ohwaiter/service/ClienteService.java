@@ -22,4 +22,8 @@ public class ClienteService {
         return true;
     }
 
+    public Cliente buscarClienteComCpf(String cpf) {
+        return clienteRepository.findByCpf(cpf);
+    }
+
 }
