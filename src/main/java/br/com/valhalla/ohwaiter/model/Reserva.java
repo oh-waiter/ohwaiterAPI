@@ -1,10 +1,16 @@
 package br.com.valhalla.ohwaiter.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
+import br.com.valhalla.ohwaiter.model.Enums.Status;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,7 +27,11 @@ public class Reserva {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String reserva;
-    private Mesas mesas;
-    private Prato prato;
+    @OneToMany(mappedBy = "mesas_id")
+    private List<Mesa> mesas;
+    @OneToMany(mappedBy = "prato_id")
+    private List<Prato> prato;
     private Cliente cliente;
+    @Enumerated(EnumType.STRING)
+    private Status status;
 }

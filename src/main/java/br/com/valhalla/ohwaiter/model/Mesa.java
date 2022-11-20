@@ -9,56 +9,54 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Mesas {
-	
-	
+public class Mesa {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long ID;
-	@Column(name="QTD_Cadeiras", nullable = false, length = 2)
+	@Column(name = "QTD_Cadeiras", nullable = false, length = 2)
 	private int qtdCadeiras;
-	@Column(name="Disp_Mesa", nullable = false, length = 5)
+	@Column(name = "Disp_Mesa", nullable = false, length = 5)
 	private Boolean dispoMesa;
-	
-	
-	
-	
-	public Mesas() {} 
-	
-	
-	
-	public Mesas(Long iD, int qtdCadeiras, Boolean dispoMesa) {
+
+	public Mesa() {
+	}
+
+	public Mesa(Long iD, int qtdCadeiras, Boolean dispoMesa) {
 		super();
 		ID = iD;
 		this.qtdCadeiras = qtdCadeiras;
 		this.dispoMesa = dispoMesa;
 	}
 
-
-
 	public int getQtdCadeiras() {
 		return qtdCadeiras;
 	}
+
 	public void setQtdCadeiras(int qtdCadeiras) {
 		this.qtdCadeiras = qtdCadeiras;
 	}
+
 	public Long getID() {
 		return ID;
 	}
+
 	public void setID(Long ID) {
 		this.ID = ID;
 	}
+
 	public Boolean getDispoMesa() {
 		return dispoMesa;
 	}
+
 	public void setDispoMesa(Boolean dispoMesa) {
 		this.dispoMesa = dispoMesa;
 	}
-	
+
 	public Boolean DisponibilidadeMesa(Boolean dispoMesa) {
 		if (dispoMesa = true) {
 			return false;
-		}else {
+		} else {
 			return false;
 		}
 	}
@@ -76,14 +74,9 @@ public class Mesas {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Mesas other = (Mesas) obj;
+		Mesa other = (Mesa) obj;
 		return Objects.equals(ID, other.ID) && Objects.equals(dispoMesa, other.dispoMesa)
 				&& qtdCadeiras == other.qtdCadeiras;
 	}
-	
-	
-	
-	
-	
 
 }
