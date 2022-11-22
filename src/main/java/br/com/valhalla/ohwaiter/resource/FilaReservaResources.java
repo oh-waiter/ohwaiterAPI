@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.valhalla.ohwaiter.model.Reserva;
 import br.com.valhalla.ohwaiter.model.Enums.Status;
+import br.com.valhalla.ohwaiter.resource.DTO.ReservaDTO;
 import br.com.valhalla.ohwaiter.service.ReservaService;
 
 @RestController
@@ -43,7 +44,7 @@ public class FilaReservaResources {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Reserva> savarReserva(@RequestBody Reserva reserva) {
+    public ResponseEntity<Reserva> savarReserva(@RequestBody ReservaDTO reserva) {
         return ResponseEntity.status(HttpStatus.CREATED).body(reservaService.salvarReserva(reserva));
     }
 

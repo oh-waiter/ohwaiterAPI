@@ -1,6 +1,7 @@
 package br.com.valhalla.ohwaiter.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -12,4 +13,6 @@ import br.com.valhalla.ohwaiter.model.Enums.Status;
 public interface ReservaRepository extends JpaRepository<Reserva, Long> {
 
     List<Reserva> findByStatus(Status status);
+
+    Optional<Reserva> findByReserva(String reserva);
 }
