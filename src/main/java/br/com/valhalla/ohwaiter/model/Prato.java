@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
@@ -25,6 +26,7 @@ public class Prato {
     private Long id;
     private String nome;
     @OneToMany
-    private List<Ingrediente> ingredientes;
+    @JoinColumn(name = "ingrediente_id")
+    private List<Estoque> ingredientes;
     private Integer tempoPreparo;
 }

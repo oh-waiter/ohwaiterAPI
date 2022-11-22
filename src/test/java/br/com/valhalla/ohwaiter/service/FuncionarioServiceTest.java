@@ -8,8 +8,6 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import org.assertj.core.api.Assertions;
@@ -57,7 +55,7 @@ public class FuncionarioServiceTest {
 
         when(funcionarioRepository.findAll()).thenReturn(List.of(funcionario, funcionario2));
 
-        List funcionarios = funcionarioService.buscarTodosOsFuncionarios();
+        List<Funcionario> funcionarios = funcionarioService.buscarTodosOsFuncionarios();
 
         Assertions.assertThat(funcionarios.size()).isEqualTo(2);
         verify(funcionarioRepository, times(1)).findAll();

@@ -8,6 +8,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import br.com.valhalla.ohwaiter.model.Enums.Status;
@@ -27,10 +29,14 @@ public class Reserva {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String reserva;
-    @OneToMany(mappedBy = "mesas_id")
+    @OneToMany()
+    @JoinColumn(name = "mesas_id")
     private List<Mesa> mesas;
-    @OneToMany(mappedBy = "prato_id")
+    @OneToMany()
+    @JoinColumn(name = "pratos_id")
     private List<Prato> prato;
+    @ManyToOne()
+    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
     @Enumerated(EnumType.STRING)
     private Status status;

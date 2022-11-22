@@ -1,10 +1,12 @@
 package br.com.valhalla.ohwaiter.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import br.com.valhalla.ohwaiter.model.Cliente;
 import br.com.valhalla.ohwaiter.repository.ClienteRepository;
 
+@Service
 public class ClienteService {
 
     @Autowired

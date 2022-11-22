@@ -33,10 +33,10 @@ public class MesaService {
 	}
 
 	public Mesa alterarMesaPorID(Mesa mesa) {
-		Mesa entity = mesaRepository.findById(mesa.getID())
+		Mesa entity = mesaRepository.findById(mesa.getId())
 				.orElseThrow(() -> new ResourceNotFoundException("Nenhum registro encontrado para este ID!"));
-		entity.setQtdCadeiras(mesa.getQtdCadeiras());
-		entity.setDispoMesa(mesa.getDispoMesa());
+		entity.setQuantidadeCarteiras(mesa.getQuantidadeCarteiras());
+		entity.setDisponibilidadeMesa(mesa.getDisponibilidadeMesa());
 		return mesaRepository.save(mesa);
 	}
 

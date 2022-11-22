@@ -53,9 +53,9 @@ class MesasServiceTest {
 		Mesa response = service.salvarMesa(mesa);
 		assertNotNull(response);
 		assertEquals(Mesa.class, response.getClass());
-		assertEquals(ID, response.getID());
-		assertEquals(qtdCadeiras, response.getQtdCadeiras());
-		assertEquals(disponibilidade, response.getDispoMesa());
+		assertEquals(ID, response.getId());
+		assertEquals(qtdCadeiras, response.getQuantidadeCarteiras());
+		assertEquals(disponibilidade, response.getDisponibilidadeMesa());
 	}
 
 	@Test
@@ -75,9 +75,9 @@ class MesasServiceTest {
 		Mesa response = service.buscarMesaID(ID);
 		Assertions.assertNotNull(response);
 		Assertions.assertEquals(Mesa.class, response.getClass());
-		Assertions.assertEquals(ID, response.getID());
-		Assertions.assertEquals(qtdCadeiras, response.getQtdCadeiras());
-		Assertions.assertEquals(disponibilidade, response.getDispoMesa());
+		Assertions.assertEquals(ID, response.getId());
+		Assertions.assertEquals(qtdCadeiras, response.getQuantidadeCarteiras());
+		Assertions.assertEquals(disponibilidade, response.getDisponibilidadeMesa());
 
 	}
 
@@ -101,9 +101,9 @@ class MesasServiceTest {
 		assertEquals(1, response.size());
 		assertNotNull(response);
 		assertEquals(Mesa.class, response.get(0).getClass());
-		assertEquals(ID, response.get(0).getID());
-		assertEquals(qtdCadeiras, response.get(0).getQtdCadeiras());
-		assertEquals(disponibilidade, response.get(0).getDispoMesa());
+		assertEquals(ID, response.get(0).getId());
+		assertEquals(qtdCadeiras, response.get(0).getQuantidadeCarteiras());
+		assertEquals(disponibilidade, response.get(0).getDisponibilidadeMesa());
 		
 	}
 
@@ -114,9 +114,9 @@ class MesasServiceTest {
 		Mesa response = service.alterarMesaPorID(mesa);
 		assertNotNull(response);
 		assertEquals(Mesa.class, response.getClass());
-		assertEquals(ID, response.getID());
-		assertEquals(qtdCadeiras, response.getQtdCadeiras());
-		Assertions.assertEquals(disponibilidade, response.getDispoMesa());
+		assertEquals(ID, response.getId());
+		assertEquals(qtdCadeiras, response.getQuantidadeCarteiras());
+		Assertions.assertEquals(disponibilidade, response.getDisponibilidadeMesa());
 	}
 
 	@Test
