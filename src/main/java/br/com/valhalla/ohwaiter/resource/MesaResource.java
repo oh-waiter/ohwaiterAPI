@@ -14,38 +14,39 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.valhalla.ohwaiter.model.Mesas;
-import br.com.valhalla.ohwaiter.service.MesasService;
+import br.com.valhalla.ohwaiter.model.Mesa;
+import br.com.valhalla.ohwaiter.service.MesaService;
+
 @RequestMapping("/Mesas")
 @RestController
-public class MesasResource {
-	
+public class MesaResource {
+
 	@Autowired
-	private MesasService service;
-	
-	@GetMapping(value = "/{id}",
-			produces = MediaType.APPLICATION_JSON_VALUE)
-	public Mesas buscarItem(@PathVariable Long id) {
-		return service.buscarMesasID(id);
-	} 
+	private MesaService service;
+
+	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public Mesa buscarItem(@PathVariable Long id) {
+		return service.buscarMesaID(id);
+	}
+
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-	public List <Mesas> buscarTodosAsMesas() {
-		return service.buscarMesas();
-	} 
-	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
-			produces = MediaType.APPLICATION_JSON_VALUE)
-	public Mesas CadastrarItemCardapio(@RequestBody Mesas mesas) {
-		return service.salvarMesa(mesas);
-	} 
-	
-	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
-			produces = MediaType.APPLICATION_JSON_VALUE)
-	public Mesas UpdateItem(@RequestBody Mesas mesas) {
+	public List<Mesa> buscarTodosAsMesas() {
+		return service.buscarMesa();
+	}
+
+	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Mesa CadastrarItemCardapio(@RequestBody Mesa mesas) {
 		return service.salvarMesa(mesas);
 	}
+
+	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Mesa UpdateItem(@RequestBody Mesa mesas) {
+		return service.salvarMesa(mesas);
+	}
+
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<?> DeleteItemCardapio(@PathVariable Long id) {
-		service.deletarMesasPorID(id);
+		service.deletarMesaPorID(id);
 		return ResponseEntity.noContent().build();
 	}
 

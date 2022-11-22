@@ -8,12 +8,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import br.com.valhalla.ohwaiter.model.Estoque;
+import br.com.valhalla.ohwaiter.model.Prato;
 
 @Repository
-public interface EstoqueRepository extends JpaRepository<Estoque, Long>{
+public interface PratoRepository extends JpaRepository<Prato, Long>{
     
-    @Query(value = "SELECT e FROM Estoque e WHERE e.nome IN :nomes")
-    List<Estoque> findByNomeList(@Param("nomes") Collection<String> nomes);
+    @Query(value = "SELECT m FROM Mesa m WHERE m.id IN :ids")
+    List<Prato> findByIdList(@Param("ids") Collection<Long> ids);
 
 }

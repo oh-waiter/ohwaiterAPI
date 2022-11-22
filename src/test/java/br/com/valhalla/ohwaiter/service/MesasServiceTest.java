@@ -21,25 +21,25 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataIntegrityViolationException;
 
 import br.com.valhalla.ohwaiter.exceptions.ResourceNotFoundException;
-import br.com.valhalla.ohwaiter.model.Mesas;
-import br.com.valhalla.ohwaiter.repository.MesasRepository;
+import br.com.valhalla.ohwaiter.model.Mesa;
+import br.com.valhalla.ohwaiter.repository.MesaRepository;
+
 @SpringBootTest
 class MesasServiceTest {
 
-	final Long ID                 = 1L;
+	final Long ID = 1L;
 	final int qtdCadeiras = 4;
 	final Boolean disponibilidade = true;
-	
-	
+
 	@InjectMocks
-	private MesasService service;
-	
+	private MesaService service;
+
 	@Mock
-	private MesasRepository repository;
-	
-	private Mesas mesa;
-	
-	private Optional<Mesas>optionalMesas;
+	private MesaRepository repository;
+
+	private Mesa mesa;
+
+	private Optional<Mesa> optionalMesas;
 
 	@BeforeEach
 	void setUp() throws Exception {
@@ -50,13 +50,14 @@ class MesasServiceTest {
 	@Test
 	void quandoCriarUmaNovaMesaRetorneSucesso() {
 		when(repository.save(Mockito.any())).thenReturn(mesa);
-		Mesas response = service.salvarMesa(mesa);
+		Mesa response = service.salvarMesa(mesa);
 		assertNotNull(response);
-		assertEquals(Mesas.class, response.getClass());
-		assertEquals(ID, response.getID());
-		assertEquals(qtdCadeiras, response.getQtdCadeiras());
-		assertEquals(disponibilidade, response.getDispoMesa());
+		assertEquals(Mesa.class, response.getClass());
+		assertEquals(ID, response.getId());
+		assertEquals(qtdCadeiras, response.getQuantidadeCarteiras());
+		assertEquals(disponibilidade, response.getDisponibilidadeMesa());
 	}
+
 	@Test
 	void quandoCriarUmaNovaMesaRetorneUmaViolacaoDeIntegridadeDeDados() {
 		when(repository.findById(Mockito.anyLong())).thenReturn(optionalMesas);
@@ -71,39 +72,38 @@ class MesasServiceTest {
 	@Test
 	void quandoFazerUmaBuscaPorIDRetorneUmaInstanciaDeMesas() {
 		Mockito.when(repository.findById(Mockito.anyLong())).thenReturn(optionalMesas);
-		Mesas response =service.buscarMesasID(ID);
+		Mesa response = service.buscarMesaID(ID);
 		Assertions.assertNotNull(response);
-		Assertions.assertEquals(Mesas.class, response.getClass());
-		Assertions.assertEquals(ID, response.getID());
-		Assertions.assertEquals(qtdCadeiras, response.getQtdCadeiras());
-		Assertions.assertEquals(disponibilidade,response.getDispoMesa());
-		
+		Assertions.assertEquals(Mesa.class, response.getClass());
+		Assertions.assertEquals(ID, response.getId());
+		Assertions.assertEquals(qtdCadeiras, response.getQuantidadeCarteiras());
+		Assertions.assertEquals(disponibilidade, response.getDisponibilidadeMesa());
+
 	}
+
 	@Test
 	void quandoFazerUmaBuscaPorIDRetorneUmObjetoNaoEncontrado() {
 		when(repository.findById(Mockito.anyLong())).thenThrow
 		(new ResourceNotFoundException("Nenhum registro encontrado para este ID!"));
 		try {
-			service.buscarMesasID(ID);
+			service.buscarMesaID(ID);
 		} catch (Exception ex) {
 			assertEquals(ResourceNotFoundException.class, ex.getClass());
 			assertEquals("Nenhum registro encontrado para este ID!", ex.getMessage());
 		}
 	}
-	
-	
 
 	@Test
 	void quandoBuscarTodasRetorneUmaListaDeMesas() {
 		when(repository.findAll()).thenReturn(List.of(mesa));
 		
-		List<Mesas>response = service.buscarMesas();
+		List<Mesa>response = service.buscarMesa();
 		assertEquals(1, response.size());
 		assertNotNull(response);
-		assertEquals(Mesas.class, response.get(0).getClass());
-		assertEquals(ID, response.get(0).getID());
-		assertEquals(qtdCadeiras, response.get(0).getQtdCadeiras());
-		assertEquals(disponibilidade, response.get(0).getDispoMesa());
+		assertEquals(Mesa.class, response.get(0).getClass());
+		assertEquals(ID, response.get(0).getId());
+		assertEquals(qtdCadeiras, response.get(0).getQuantidadeCarteiras());
+		assertEquals(disponibilidade, response.get(0).getDisponibilidadeMesa());
 		
 	}
 
@@ -111,27 +111,26 @@ class MesasServiceTest {
 	void quandoAtualizarUmaMesaRetorneSucesso() {
 		when(repository.findById(Mockito.anyLong())).thenReturn(optionalMesas);
 		when(repository.save(Mockito.any())).thenReturn(mesa);
-		Mesas response = service.alterarMesasPorID(mesa);
+		Mesa response = service.alterarMesaPorID(mesa);
 		assertNotNull(response);
-		assertEquals(Mesas.class, response.getClass());
-		assertEquals(ID, response.getID());
-		assertEquals(qtdCadeiras, response.getQtdCadeiras());
-		Assertions.assertEquals(disponibilidade, response.getDispoMesa());
+		assertEquals(Mesa.class, response.getClass());
+		assertEquals(ID, response.getId());
+		assertEquals(qtdCadeiras, response.getQuantidadeCarteiras());
+		Assertions.assertEquals(disponibilidade, response.getDisponibilidadeMesa());
 	}
 
 	@Test
 	void deleteComSucesso() {
 		when(repository.findById(Mockito.anyLong())).thenReturn(optionalMesas);
 		doNothing().when(repository).deleteById(Mockito.anyLong());
-		service.deletarMesasPorID(ID);
+		service.deletarMesaPorID(ID);
 		verify(repository, times(0)).deleteById(Mockito.anyLong());
 	}
-	
+
 	private void startCardapio() {
-		mesa = new Mesas(ID,qtdCadeiras,disponibilidade);
-		optionalMesas = Optional.of(new Mesas(ID,qtdCadeiras,disponibilidade));
-		
-		
+		mesa = new Mesa(ID, qtdCadeiras, disponibilidade);
+		optionalMesas = Optional.of(new Mesa(ID, qtdCadeiras, disponibilidade));
+
 	}
 
 }
