@@ -16,4 +16,6 @@ public interface EstoqueRepository extends JpaRepository<Estoque, Long>{
     @Query(value = "SELECT e FROM Estoque e WHERE e.nome IN :nomes")
     List<Estoque> findByNomeList(@Param("nomes") Collection<String> nomes);
 
+    Estoque findByNome(String nome);
+
 }

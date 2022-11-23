@@ -10,6 +10,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.web.client.HttpClientErrorException.Forbidden;
 
+import br.com.valhalla.ohwaiter.exceptions.FaltandoEstoqueException;
 import br.com.valhalla.ohwaiter.resource.DTO.ExceptionDTO;
 
 @ControllerAdvice
@@ -53,6 +54,12 @@ public class GlobalExceptionHandle {
     public ResponseEntity<ExceptionDTO> WebExchangeBindException(WebExchangeBindException e) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(new ExceptionDTO(HttpStatus.BAD_REQUEST, "Erro no servidor"));
+    }
+
+    @ExceptionHandler(FaltandoEstoqueException.class)
+    public ResponseEntity<ExceptionDTO> FaltandoEstoqueException(FaltandoEstoqueException e){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+        .body(new ExceptionDTO(HttpStatus.BAD_REQUEST, "Produto faltando no estoque"));
     }
 
 }
