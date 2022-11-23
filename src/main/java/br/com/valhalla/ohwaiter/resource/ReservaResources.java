@@ -38,7 +38,7 @@ public class ReservaResources {
         return ResponseEntity.ok().body(reservaService.buscarTodasAsReserva());
     }
 
-    @GetMapping(path = "Abertas", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "abertas", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Reserva>> buscarReservasEmAberto() {
         return ResponseEntity.ok().body(reservaService.buscarReservasPorStatus(Status.ABERTO));
     }

@@ -6,10 +6,12 @@ import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.valhalla.ohwaiter.exceptions.FaltandoEstoqueException;
 import br.com.valhalla.ohwaiter.exceptions.ObjectNotFoundException;
 import br.com.valhalla.ohwaiter.model.Reserva;
 import br.com.valhalla.ohwaiter.model.Enums.Status;
 import br.com.valhalla.ohwaiter.repository.ClienteRepository;
+import br.com.valhalla.ohwaiter.repository.EstoqueRepository;
 import br.com.valhalla.ohwaiter.repository.MesaRepository;
 import br.com.valhalla.ohwaiter.repository.PratoRepository;
 import br.com.valhalla.ohwaiter.repository.ReservaRepository;
@@ -20,6 +22,9 @@ public class ReservaService {
 
     @Autowired
     private ReservaRepository reservaRepository;
+
+    @Autowired
+    private EstoqueRepository estoqueRepository;
 
     @Autowired
     private MesaRepository mesaRepository;
@@ -43,6 +48,13 @@ public class ReservaService {
 
         reserva.setMesas(mesaRepository.findByIdList(reservaDto.getMesas()));
         reserva.setPrato(pratoRepository.findByIdList(reservaDto.getPrato()));
+        reserva.getPrato().forEach(prato -> {
+            prato.getIngredientes().forEach(ingrediente -> {
+                if(ingrediente.getQuantidade() > estoqueRepository.findByNome(ingrediente.getNome()).getQuantidade()){
+                    throw new FaltandoEstoqueException("Está faltando o produto no estoque");
+                }
+            });
+        });
         reserva.setCliente(clienteRepository.findByCpf(reservaDto.getCliente()));
         reserva.setStatus(Status.ABERTO);
         reserva.setReserva(criarReserva());
@@ -59,10 +71,7 @@ public class ReservaService {
     }
 
     public Reserva alterarStatusReserva(String status, Long id) {
-        Reserva reserva = reservaRepository.findById(id).orElse(null);
-        if (reserva == null) {
-            throw new ObjectNotFoundException("Reserva não encontrado");
-        }
+        Reserva reserva = reservaRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Reserva não encontrado"));
         reserva.setStatus(Status.getEnum(status));
         return reservaRepository.save(reserva);
     }
