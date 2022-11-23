@@ -43,6 +43,10 @@ public class ReservaService {
         return reservaRepository.findByStatus(status);
     }
 
+    public Boolean verificaSeReservaExiste(String reserva){
+        return reservaRepository.findByReserva(reserva).isPresent();
+    }
+
     public Reserva salvarReserva(ReservaDTO reservaDto) {
         Reserva reserva = new Reserva();
 
