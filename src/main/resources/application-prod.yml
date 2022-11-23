@@ -18,3 +18,11 @@ spring:
  server:
    port: 8080
 
+ads04:
+  security:
+    urlToken: http://localhost:8082/auth-server/oauth/token
+    urlCheckToken: http://localhost:8082/auth-server/oauth/check_token
+    clientId: teste
+    clientSecret: '123456'
+    userManager: teste
+    passManger: '123456'
