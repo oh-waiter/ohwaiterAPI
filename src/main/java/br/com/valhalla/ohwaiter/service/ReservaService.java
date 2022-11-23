@@ -1,6 +1,7 @@
 package br.com.valhalla.ohwaiter.service;
 
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,6 +46,10 @@ public class ReservaService {
         reserva.setCliente(clienteRepository.findByCpf(reservaDto.getCliente()));
         reserva.setStatus(Status.ABERTO);
         reserva.setReserva(criarReserva());
+        reserva.getMesas().forEach(mesa -> {
+            mesa.setDisponibilidadeMesa(false);
+            mesaRepository.save(mesa);
+        });
 
         return reservaRepository.save(reserva);
     }
@@ -66,12 +71,13 @@ public class ReservaService {
         reservaRepository.deleteById(id);
     }
 
-    private String criarReserva(){
+    private String criarReserva() {
+        Random random = new Random();
         String reserva = "RE";
-        reserva.concat(String.valueOf(Math.random() * (100000000 - 0 + 1) + 0));
-        while(reservaRepository.findByReserva(reserva).isPresent()){
+        reserva = reserva + (random.nextInt(100000000));
+        while (reservaRepository.findByReserva(reserva).isPresent()) {
             reserva = "RE";
-            reserva.concat(String.valueOf(Math.random() * (100000000 - 0 + 1) + 0));
+            reserva = reserva + (random.nextInt(100000000));
         }
         return reserva;
     }

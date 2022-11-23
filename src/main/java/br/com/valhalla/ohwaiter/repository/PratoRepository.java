@@ -11,9 +11,9 @@ import org.springframework.stereotype.Repository;
 import br.com.valhalla.ohwaiter.model.Prato;
 
 @Repository
-public interface PratoRepository extends JpaRepository<Prato, Long>{
-    
-    @Query(value = "SELECT m FROM Mesa m WHERE m.id IN :ids")
+public interface PratoRepository extends JpaRepository<Prato, Long> {
+
+    @Query(value = "SELECT p FROM Prato p WHERE p.id IN :ids")
     List<Prato> findByIdList(@Param("ids") Collection<Long> ids);
 
 }
