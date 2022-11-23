@@ -1,7 +1,7 @@
 package br.com.valhalla.ohwaiter.model.Enums;
 
 public enum Status {
-    FINALIZADO("Finalizado"), ABERTO("Aberto"), CANCELADO("Cancelado");
+    FINALIZADO("Finalizado"), ABERTO("Aberto"), CANCELADO("Cancelado"), PREPARANDO("Preparando");
 
     private String descricao = null;
 
@@ -18,6 +18,8 @@ public enum Status {
             return FINALIZADO;
         } else if (status.equals("ABERTO")) {
             return ABERTO;
+        } else if (status.equals("PREPARANDO")) {
+            return PREPARANDO;
         }
         return CANCELADO;
     }

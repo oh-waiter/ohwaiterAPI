@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,9 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.valhalla.ohwaiter.model.Mesa;
 import br.com.valhalla.ohwaiter.service.MesaService;
+import lombok.extern.slf4j.Slf4j;
 
-@RequestMapping("/Mesas")
+@RequestMapping("/mesa")
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
+@Slf4j
 public class MesaResource {
 
 	@Autowired
@@ -35,13 +39,14 @@ public class MesaResource {
 	}
 
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Mesa CadastrarItemCardapio(@RequestBody Mesa mesas) {
-		return service.salvarMesa(mesas);
+	public Mesa CadastrarItemCardapio(@RequestBody Mesa mesa) {
+		log.debug("mesa {}", mesa);
+		return service.salvarMesa(mesa);
 	}
 
 	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Mesa UpdateItem(@RequestBody Mesa mesas) {
-		return service.salvarMesa(mesas);
+	public Mesa UpdateItem(@RequestBody Mesa mesa) {
+		return service.salvarMesa(mesa);
 	}
 
 	@DeleteMapping(value = "/{id}")

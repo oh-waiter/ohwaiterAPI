@@ -20,9 +20,9 @@ public class Mesa {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long Id;
-	@Column(nullable = false, length = 2)
+	private Long id;
+	@Column(nullable = false)
 	private int quantidadeCarteiras;
-	@Column(nullable = false, length = 5)
+	@Column(nullable = false)
 	private Boolean disponibilidadeMesa;
 }
