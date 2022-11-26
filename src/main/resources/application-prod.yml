@@ -24,5 +24,6 @@ ads04:
     urlCheckToken: http://localhost:8082/auth-server/oauth/check_token
     clientId: teste
     clientSecret: '123456'
+    urlManager: http://localhost:8082/auth-server/manager
     userManager: teste
-    passManger: '123456'
+    passManager: '123456'

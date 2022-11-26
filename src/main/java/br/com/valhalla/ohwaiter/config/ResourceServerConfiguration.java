@@ -60,9 +60,11 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
         RemoteTokenServices tokenService = new RemoteTokenServices();
         tokenService.setCheckTokenEndpointUrl(urlCheckToken);
         tokenService.setClientId(clientId);
+
         tokenService.setClientSecret(clientSecret);
         tokenService.setAccessTokenConverter(getAccessTokenConverter());
         return tokenService;
+
     }
 
     private Map<String, Object> getDetailsMap(Map<String, ?> map){
