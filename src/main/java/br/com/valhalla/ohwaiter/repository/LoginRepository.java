@@ -1,4 +1,4 @@
-package br.com.valhalla.ohwaiter.model;
+package br.com.valhalla.ohwaiter.repository;
 
 import com.franciscocalaca.http.utils.Token;
 import com.franciscocalaca.http.utils.UtilHttp;
@@ -9,9 +9,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-
 @Repository
-public class Login {
+public class LoginRepository {
 
     @Value("${ads04.security.urlToken}")
     private String url;

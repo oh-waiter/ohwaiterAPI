@@ -1,7 +1,7 @@
 package br.com.valhalla.ohwaiter.resource;
 
-import br.com.valhalla.ohwaiter.model.Login;
 import br.com.valhalla.ohwaiter.model.Usuario;
+import br.com.valhalla.ohwaiter.repository.LoginRepository;
 import br.com.valhalla.ohwaiter.repository.UsuarioRespository;
 import com.franciscocalaca.http.auth.User;
 import com.franciscocalaca.http.auth.UtilManager;
@@ -20,7 +20,7 @@ import java.util.Map;
 @RequestMapping("/login")
 public class LoginResource {
     @Autowired
-    private Login loginDao;
+    private LoginRepository loginDao;
 
     @Value("${ads04.security.urlManager}")
     private String urlManager;
@@ -34,22 +34,21 @@ public class LoginResource {
     @Autowired
     private UsuarioRespository usuarioRespository;
 
-
     @PostMapping
-    public Map<String, Object> post(@RequestBody Map<String, Object> dados){
+    public Map<String, Object> post(@RequestBody Map<String, Object> dados) {
 
         String login = (String) dados.get("login");
         String senha = (String) dados.get("senha");
         Token token = loginDao.getToken(login, senha);
-
 
         Map<String, Object> resp = new HashMap<>();
         resp.put("access_token", token.getAccessToken());
         resp.put("login", login);
         return resp;
     }
+
     @PostMapping("/criar")
-    public void criarUsuario(@RequestBody Map<String, Object> dados){
+    public void criarUsuario(@RequestBody Map<String, Object> dados) {
         String login = (String) dados.get("login");
         String cpf = (String) dados.get("cpf");
         String nome = (String) dados.get("nome");
@@ -60,7 +59,7 @@ public class LoginResource {
         user.setPassword(pass);
         user.getRoles().add("ROLE_VIEWER");
         user.setTenant("teste");
-        UtilManager.createUser(urlManager,userManager,passManager,user);
+        UtilManager.createUser(urlManager, userManager, passManager, user);
 
         Usuario usuario = new Usuario();
         usuario.setLogin(login);
@@ -68,12 +67,6 @@ public class LoginResource {
         usuario.setCpf(cpf);
         usuarioRespository.save(usuario);
 
-
-
-
-
-
     }
-
 
 }
