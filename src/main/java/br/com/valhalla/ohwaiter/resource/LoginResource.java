@@ -1,17 +1,14 @@
 package br.com.valhalla.ohwaiter.resource;
 
-import br.com.valhalla.ohwaiter.model.Login;
 import br.com.valhalla.ohwaiter.model.Usuario;
+import br.com.valhalla.ohwaiter.repository.LoginRepository;
 import br.com.valhalla.ohwaiter.repository.UsuarioRespository;
 import com.franciscocalaca.http.auth.User;
 import com.franciscocalaca.http.auth.UtilManager;
 import com.franciscocalaca.http.utils.Token;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +17,7 @@ import java.util.Map;
 @RequestMapping("/login")
 public class LoginResource {
     @Autowired
-    private Login loginDao;
+    private LoginRepository loginDao;
 
     @Value("${ads04.security.urlManager}")
     private String urlManager;
@@ -41,6 +38,7 @@ public class LoginResource {
         String login = (String) dados.get("login");
         String senha = (String) dados.get("senha");
         Token token = loginDao.getToken(login, senha);
+        System.out.println(login);
 
 
         Map<String, Object> resp = new HashMap<>();
