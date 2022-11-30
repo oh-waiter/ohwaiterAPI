@@ -1,6 +1,7 @@
 spring:
- profile:
+  profile:
     active: prod
+
  datasource:
      driver-class-name: org.postgresql.Driver
      url: jdbc:postgresql://localhost:5432/ohwaiter
@@ -30,7 +31,5 @@ ads04:
       passManager: '123456'
       clientId: teste
       clientSecret: '123456'
-
-
 
 

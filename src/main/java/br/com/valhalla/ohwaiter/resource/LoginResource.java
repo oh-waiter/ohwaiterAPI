@@ -31,23 +31,22 @@ public class LoginResource {
     @Autowired
     private UsuarioRespository usuarioRespository;
 
-
     @PostMapping
-    public Map<String, Object> post(@RequestBody Map<String, Object> dados){
+    public Map<String, Object> post(@RequestBody Map<String, Object> dados) {
 
         String login = (String) dados.get("login");
         String senha = (String) dados.get("senha");
         Token token = loginDao.getToken(login, senha);
         System.out.println(login);
 
-
         Map<String, Object> resp = new HashMap<>();
         resp.put("access_token", token.getAccessToken());
         resp.put("login", login);
         return resp;
     }
+
     @PostMapping("/criar")
-    public void criarUsuario(@RequestBody Map<String, Object> dados){
+    public void criarUsuario(@RequestBody Map<String, Object> dados) {
         String login = (String) dados.get("login");
         String cpf = (String) dados.get("cpf");
         String nome = (String) dados.get("nome");
@@ -58,7 +57,7 @@ public class LoginResource {
         user.setPassword(pass);
         user.getRoles().add("ROLE_VIEWER");
         user.setTenant("teste");
-        UtilManager.createUser(urlManager,userManager,passManager,user);
+        UtilManager.createUser(urlManager, userManager, passManager, user);
 
         Usuario usuario = new Usuario();
         usuario.setLogin(login);
@@ -66,12 +65,6 @@ public class LoginResource {
         usuario.setCpf(cpf);
         usuarioRespository.save(usuario);
 
-
-
-
-
-
     }
-
 
 }
