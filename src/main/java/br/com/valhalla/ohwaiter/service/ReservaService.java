@@ -43,7 +43,7 @@ public class ReservaService {
         return reservaRepository.findByStatus(status);
     }
 
-    public Boolean verificaSeReservaExiste(String reserva){
+    public Boolean verificaSeReservaExiste(String reserva) {
         return reservaRepository.findByReserva(reserva).isPresent();
     }
 
@@ -54,7 +54,7 @@ public class ReservaService {
         reserva.setPrato(pratoRepository.findByIdList(reservaDto.getPrato()));
         reserva.getPrato().forEach(prato -> {
             prato.getIngredientes().forEach(ingrediente -> {
-                if(ingrediente.getQuantidade() > estoqueRepository.findByNome(ingrediente.getNome()).getQuantidade()){
+                if (ingrediente.getQuantidade() > estoqueRepository.findByNome(ingrediente.getNome()).getQuantidade()) {
                     throw new FaltandoEstoqueException("Está faltando o produto no estoque");
                 }
             });
@@ -67,6 +67,12 @@ public class ReservaService {
             mesaRepository.save(mesa);
         });
 
+        reserva.getPrato().forEach(prato -> {
+            reserva.setTempoPrepardoTotal(reserva.getTempoPrepardoTotal() + prato.getTempoPreparo());
+        });
+
+        reserva.setHorarioDaReserva(reservaDto.getHoraDaReserva());
+
         return reservaRepository.save(reserva);
     }
 
@@ -75,7 +81,8 @@ public class ReservaService {
     }
 
     public Reserva alterarStatusReserva(String status, Long id) {
-        Reserva reserva = reservaRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Reserva não encontrado"));
+        Reserva reserva = reservaRepository.findById(id)
+                .orElseThrow(() -> new ObjectNotFoundException("Reserva não encontrado"));
         reserva.setStatus(Status.getEnum(status));
         return reservaRepository.save(reserva);
     }

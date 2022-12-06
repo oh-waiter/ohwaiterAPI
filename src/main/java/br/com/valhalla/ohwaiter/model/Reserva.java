@@ -1,5 +1,6 @@
 package br.com.valhalla.ohwaiter.model;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -40,4 +41,6 @@ public class Reserva {
     private Cliente cliente;
     @Enumerated(EnumType.STRING)
     private Status status;
+    private int tempoPrepardoTotal = 0;
+    private LocalDateTime horarioDaReserva;
 }
