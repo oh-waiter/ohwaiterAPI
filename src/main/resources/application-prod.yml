@@ -1,29 +1,35 @@
 spring:
   profile:
     active: prod
-  datasource:
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5433/ohwaiter
-    username: postgres
-    password: 123
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-    database: postgresql
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
-    open-in-view: false
-    generate-ddl: true
-  logging: INFO
-  server:
-    port: 8080
+
+ datasource:
+     driver-class-name: org.postgresql.Driver
+     url: jdbc:postgresql://localhost:5432/ohwaiter
+     username: postgres
+     password: aluno
+ jpa:
+   hibernate:
+        ddl-auto: update
+   show-sql: true
+   database: postgresql
+   database-platform: org.hibernate.dialect.PostgreSQLDialect
+   open-in-view: false
+   generate-ddl: true
+ logging: INFO
+ server:
+   port: 8080
+ mvc:
+  pathmatch:
+    matching-strategy: ant-path-matcher
 
 ads04:
   security:
-    urlToken: http://localhost:8082/auth-server/oauth/token
-    urlCheckToken: http://localhost:8082/auth-server/oauth/check_token
-    clientId: teste
-    clientSecret: "123456"
-    userManager: teste
-    passManager: "123456"
-    urlManager: http://localhost:8082/auth-server/manager
+      urlManager: http://localhost:8082/auth-server/manager
+      urlCheckToken: http://localhost:8082/auth-server/oauth/check_token
+      urlToken: http://localhost:8082/auth-server/oauth/token
+      userManager: teste
+      passManager: '123456'
+      clientId: teste
+      clientSecret: '123456'
+
+
