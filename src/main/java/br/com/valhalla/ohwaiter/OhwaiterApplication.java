@@ -3,11 +3,10 @@ package br.com.valhalla.ohwaiter;
 //mport org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
 
 
 @SpringBootApplication
-@EnableSwagger2
 public class OhwaiterApplication {
 
 	public static void main(String[] args) {

@@ -22,7 +22,7 @@ import br.com.valhalla.ohwaiter.resource.DTO.ReservaDTO;
 import br.com.valhalla.ohwaiter.service.ReservaService;
 
 @RestController
-@RequestMapping("reserva")
+@RequestMapping("/reserva")
 @CrossOrigin(origins = "http://localhost:4200")
 public class ReservaResources {
     @Autowired
